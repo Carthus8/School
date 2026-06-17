@@ -46,7 +46,7 @@ public class GroceryDiscountAnalyzerBiaco
         }
     }
 
-    public static double finalPrice(double amount, int percentage)
+    public static double finalPriceDisc(double amount, int percentage)
     {
         return amount * (percentage * 0.01);
     }
@@ -55,25 +55,28 @@ public class GroceryDiscountAnalyzerBiaco
     {
         Scanner user_input = new Scanner(System.in);
 
-        System.out.println("Enter your name: ");
+        System.out.print("Enter your name: ");
         String name = user_input.nextLine();
 
-        System.out.println("Enter your age: ");
+        System.out.print("Enter your age: ");
         int age = user_input.nextInt();
 
-        System.out.println("Enter Purchase Amount: ");
+        System.out.print("Enter Purchase Amount: ");
         double amount = user_input.nextDouble();
 
-        System.out.println("Enter Membeship code (REG, VIP): ");
+        user_input.nextLine(); //removes leftover newline
+
+        System.out.print("Enter Membership code (REG, VIP): ");
         String membership = user_input.nextLine();
 
-        System.out.println("\nCustomer Name: " + name);
-        System.out.println("\nAge: " + age);
-        System.out.println("\nAge Category: " + AgeCategory(age));
-        System.out.println("\nPurchase Amount: " + amount);
+        System.out.println("===============================");
+        System.out.println("Customer Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Age Category: " + AgeCategory(age));
+        System.out.println("Purchase Amount: " + amount);
         int percentage = discountRate(amount);
-        System.out.println("\nDiscount Rate: " + percentage + "%");
-        System.out.println("\nFinal Price: " + finalPrice(amount, percentage));
+        System.out.println("Discount Rate: " + percentage + "%");
+        System.out.println("Final Price: " + (amount - finalPriceDisc(amount, percentage)));
 
         switch (membership)
         {
