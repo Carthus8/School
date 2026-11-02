@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mini Task Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="glow" aria-hidden="true"><i></i><i></i></div>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow" id="todayLabel">Today</div>
+      <h1>My <span>Tasks</span></h1>
+    </div>
+    <div class="top-right">
+      <div class="ring-card">
+        <div class="ring">
+          <svg viewBox="0 0 80 80" aria-hidden="true">
+            <circle class="track" cx="40" cy="40" r="34" fill="none" stroke-width="9"></circle>
+            <circle class="bar" id="ringBar" cx="40" cy="40" r="34" fill="none" stroke-width="9" stroke-dasharray="213.63" stroke-dashoffset="213.63"></circle>
+          </svg>
+          <b id="ringPct">0%</b>
+        </div>
+        <p><strong id="ringMain">0 of 0 done</strong><span id="ringSub">assignments</span></p>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle light and dark theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="grid">
+    <div class="stack">
+      <section class="panel" aria-labelledby="addH">
+        <div class="panel-head"><h2 id="addH">Add to your list</h2></div>
+        <form class="composer" id="form" novalidate>
+          <div class="seg" role="radiogroup" aria-label="Type">
+            <input type="radio" name="type" id="typeTask" value="task" checked><label for="typeTask">Assignment</label>
+            <input type="radio" name="type" id="typeEvent" value="event"><label for="typeEvent">Event</label>
+          </div>
+          <div class="fields">
+            <label class="field title-input"><span>Title</span><input type="text" id="fTitle" placeholder="Add a new task..." autocomplete="off" maxlength="120"></label>
+            <label class="field"><span>Date</span><input type="date" id="fDate"></label>
+            <label class="field"><span id="timeLbl">Due time</span><input type="time" id="fTime"></label>
+            <label class="field course"><span>Subject</span><input type="text" id="fCourse" placeholder="e.g. Capstone" autocomplete="off" maxlength="40"></label>
+          </div>
+          <p class="err" id="err" role="alert"></p>
+          <button class="add-btn" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add Task</button>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="dueH">
+        <div class="panel-head"><h2 id="dueH">Almost due</h2><span class="sub" id="dueSub">next 3 days</span></div>
+        <ul class="due-list" id="dueList"></ul>
+      </section>
+
+      <section class="panel" aria-labelledby="listH">
+        <div class="panel-head"><h2 id="listH">All items</h2><span class="sub" id="countSub"></span></div>
+        <div class="tabs" id="tabs">
+          <button class="tab" type="button" data-f="all" aria-pressed="true">All</button>
+          <button class="tab" type="button" data-f="task" aria-pressed="false">Assignments</button>
+          <button class="tab" type="button" data-f="event" aria-pressed="false">Events</button>
+          <button class="tab" type="button" data-f="done" aria-pressed="false">Done</button>
+        </div>
+        <ul class="items" id="items"></ul>
+        <div class="notice" id="sampleNotice" hidden>
+          <span>Sample items are shown so you can see how it works.</span>
+          <button class="link-btn" type="button" id="clearSamples">Remove samples</button>
+        </div>
+      </section>
+    </div>
+
+    <aside class="panel" aria-labelledby="calH">
+      <div class="cal-head">
+        <h2 id="calH">November 2026</h2>
+        <div class="nav">
+          <button type="button" id="prevM" aria-label="Previous month"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button type="button" class="today-btn" id="todayBtn">Today</button>
+          <button type="button" id="nextM" aria-label="Next month"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+      <div class="dow" aria-hidden="true"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+      <div class="days" id="days"></div>
+      <div class="legend">
+        <span><i class="dot"></i> Assignment</span>
+        <span><i class="dot crit"></i> Due soon</span>
+        <span><i class="dot evt"></i> Event</span>
+        <span><i class="dot done"></i> Done</span>
+      </div>
+      <div class="agenda">
+        <h3 id="agendaH">Selected day</h3>
+        <ul class="items" id="agenda"></ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
